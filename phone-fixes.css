@@ -1,0 +1,14 @@
+/* Final mobile HUD/layout fixes */
+.accountUser{top:calc(env(safe-area-inset-top) + 68px)!important;left:50%!important;right:auto!important;transform:translateX(-50%);white-space:nowrap;max-width:46vw;overflow:hidden;text-overflow:ellipsis}
+.accountUser button{margin-left:5px}
+.message{top:calc(env(safe-area-inset-top) + 112px)!important;z-index:28}
+.keeperCard{border:1px solid #6fa9db77;border-radius:17px;background:linear-gradient(145deg,#071c30e8,#061321ee);box-shadow:0 14px 38px #0009;padding:14px;text-align:left;backdrop-filter:blur(12px)}
+.keeperCard .cardTag{display:block;color:#72e69a;font-size:12px;font-weight:1000;letter-spacing:1px}
+.keeperCard>b{display:block;margin-top:5px;font-size:11px;color:#dbe6ed}
+.keeperChoices{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
+.keeperChoices button{min-height:34px;border:1px solid #789ab455;border-radius:9px;background:#071a29;color:#dbe7ee;font-size:9px;font-weight:1000;letter-spacing:.5px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.keeperChoices button.active{background:linear-gradient(180deg,#1dca70,#078047);border-color:#5bf095;color:#fff;box-shadow:0 0 16px #20dc6a33}
+.keeperCard>small{display:block;color:#91a7b6;font-size:8px;margin-top:7px}.keeperCard>small strong{color:#ffd34d}
+@media(max-width:800px){.keeperCard{padding:10px}.keeperCard .cardTag{font-size:10px}.keeperCard>b{font-size:9px}.keeperChoices{margin-top:7px}.keeperChoices button{min-height:30px;font-size:8px}.keeperCard>small{font-size:7px}}
+@media(max-width:560px){.accountUser{top:calc(env(safe-area-inset-top) + 65px)!important;max-width:48vw;font-size:9px;padding:6px 8px}.accountUser button{font-size:8px}.message{top:calc(env(safe-area-inset-top) + 105px)!important}.mainGrid{bottom:78px}.keeperCard{margin-bottom:7px}.keeperChoices button{min-height:32px}}
+@media(orientation:landscape) and (max-height:520px){.accountUser{top:54px!important;font-size:8px}.message{top:83px!important}.keeperCard{padding:7px}.keeperCard>b{font-size:8px}.keeperChoices{margin-top:5px}.keeperChoices button{min-height:25px;font-size:7px}.keeperCard>small{display:none}}
