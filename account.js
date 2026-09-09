@@ -1,7 +1,7 @@
 (()=>{
 'use strict';
-// The stable game engine is loaded in place of the older engine before the next script tag executes.
-const oldGame=document.querySelector('script[src="game.js"]');if(oldGame)oldGame.src='game-fixed.js';
+// Load the mobile-first engine instead of the older game.js.
+const oldGame=document.querySelector('script[src="game.js"]');if(oldGame)oldGame.src='game-mobile.js?v=3';
 const KEY='psAccountsV1',ACTIVE='psActiveAccount';
 async function hash(text){try{if(window.crypto&&crypto.subtle){const data=new TextEncoder().encode(text),buf=await crypto.subtle.digest('SHA-256',data);return [...new Uint8Array(buf)].map(x=>x.toString(16).padStart(2,'0')).join('')}}catch(e){}let h=0;for(let i=0;i<text.length;i++)h=((h<<5)-h)+text.charCodeAt(i)|0;return String(h>>>0)}
 function accounts(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}function put(a){localStorage.setItem(KEY,JSON.stringify(a))}
