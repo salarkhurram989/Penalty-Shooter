@@ -11,6 +11,7 @@
 <link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg">
 <title>Penalty Shooter</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="account.css">
 </head>
 <body>
 <canvas id="gameCanvas"></canvas>
@@ -23,40 +24,14 @@
   <div id="message" class="message">Choose a mode</div>
   <div id="powerWrap"><div id="powerLabel">POWER</div><div class="powerBar"><i id="powerFill"></i></div></div>
 </div>
-
-<section id="menu" class="menuScreen">
-  <div class="heroShade"></div>
-  <div class="menuContent">
-    <div class="titleBlock"><div class="eyebrow">AIM • SHOOT • SCORE</div><h1>PENALTY<br><span>SHOOTER</span></h1><p>REALISTIC PENALTY FOOTBALL</p></div>
-    <div class="mainGrid">
-      <div class="mainNav">
-        <button class="bigMenu active" id="shootoutBtn" type="button"><span>▶</span><div><b>PLAY</b><small>Start the game</small></div></button>
-        <button class="bigMenu" id="tournamentBtn" type="button"><span>🏆</span><div><b>TOURNAMENT</b><small>Win and unlock rewards</small></div></button>
-        <button class="bigMenu" id="skillsBtn" type="button"><span>⚽</span><div><b>SKILLS</b><small>Improve your shooting</small></div></button>
-        <button class="bigMenu" id="statsBtn" type="button"><span>▥</span><div><b>STATS</b><small>View your progress</small></div></button>
-        <button class="bigMenu" id="storeBtn" type="button"><span>🛒</span><div><b>STORE</b><small>Get kits & upgrades</small></div></button>
-      </div>
-      <div class="sideCards">
-        <button class="rewardCard" id="rewardBtn" type="button"><span class="cardTag">DAILY REWARD</span><b>Login & get your reward!</b><strong>🎁</strong></button>
-        <button class="challengeCard" id="challengeBtn" type="button"><span class="thumb">⚽</span><div><b>CHALLENGE MODE</b><small>Beat the levels</small></div><strong>›</strong></button>
-      </div>
-    </div>
-    <div class="bottomNav"><button id="bottomPlay" type="button">🎮</button><button id="bottomRank" type="button">♛</button><button id="bottomShare" type="button">↗</button><button id="menuInstallBtn" type="button" hidden>⬇ INSTALL</button></div>
-  </div>
-</section>
-
+<section id="menu" class="menuScreen"><div class="heroShade"></div><div class="menuContent"><div class="titleBlock"><div class="eyebrow">AIM • SHOOT • SCORE</div><h1>PENALTY<br><span>SHOOTER</span></h1><p>REALISTIC PENALTY FOOTBALL</p></div><div class="mainGrid"><div class="mainNav"><button class="bigMenu active" id="shootoutBtn" type="button"><span>▶</span><div><b>PLAY</b><small>Start the game</small></div></button><button class="bigMenu" id="tournamentBtn" type="button"><span>🏆</span><div><b>TOURNAMENT</b><small>Win and unlock rewards</small></div></button><button class="bigMenu" id="skillsBtn" type="button"><span>⚽</span><div><b>SKILLS</b><small>Improve your shooting</small></div></button><button class="bigMenu" id="statsBtn" type="button"><span>▥</span><div><b>STATS</b><small>View your progress</small></div></button><button class="bigMenu" id="storeBtn" type="button"><span>🛒</span><div><b>STORE</b><small>Get kits & upgrades</small></div></button></div><div class="sideCards"><button class="rewardCard" id="rewardBtn" type="button"><span class="cardTag">DAILY REWARD</span><b>Login & get your reward!</b><strong>🎁</strong></button><button class="challengeCard" id="challengeBtn" type="button"><span class="thumb">⚽</span><div><b>CHALLENGE MODE</b><small>Beat the levels</small></div><strong>›</strong></button></div></div><div class="bottomNav"><button id="bottomPlay" type="button">🎮</button><button id="bottomRank" type="button">♛</button><button id="bottomShare" type="button">↗</button><button id="menuInstallBtn" type="button" hidden>⬇ INSTALL</button></div></div></section>
 <section id="store" class="modal hidden"><div class="modalBox"><button class="close" data-close="store">×</button><h2>STORE</h2><p>Spend coins on your player.</p><div id="shopGrid" class="shopGrid"></div></div></section>
 <section id="statsPanel" class="modal hidden"><div class="modalBox"><button class="close" data-close="statsPanel">×</button><h2>YOUR STATS</h2><div class="statGrid"><div><b id="statGoals">0</b><small>GOALS</small></div><div><b id="statScore">0</b><small>SCORE</small></div><div><b id="statBest">0</b><small>BEST</small></div><div><b id="statStreak">0</b><small>STREAK</small></div></div></div></section>
 <section id="skillsPanel" class="modal hidden"><div class="modalBox"><button class="close" data-close="skillsPanel">×</button><h2>SKILLS</h2><div class="skill"><span>POWER</span><i><b id="skillPower"></b></i></div><div class="skill"><span>ACCURACY</span><i><b id="skillAccuracy"></b></i></div><div class="skill"><span>CURVE</span><i><b id="skillCurve"></b></i></div><p class="muted">Earn coins by scoring goals and completing challenges.</p></div></section>
 <section id="settingsPanel" class="modal hidden"><div class="modalBox"><button class="close" data-close="settingsPanel">×</button><h2>SETTINGS</h2><button class="settingBtn" id="soundBtn">🔊 Sound: ON</button><button class="settingBtn" id="resetBtn">↻ Reset progress</button></div></section>
 <section id="result" class="panel hidden"><h2 id="resultTitle">GOAL!</h2><p id="resultText"></p><button type="button" id="nextBtn">NEXT SHOT</button><button type="button" id="restartBtn">RESTART</button><button type="button" id="backMenuBtn">MENU</button></section>
 <section id="controls" class="hidden"><button type="button" class="ctrl" id="leftBtn">◀</button><button type="button" class="ctrl" id="upBtn">▲</button><button type="button" class="ctrl" id="downBtn">▼</button><button type="button" class="ctrl" id="rightBtn">▶</button><button type="button" class="ctrl" id="spinLeft">↶</button><button type="button" class="ctrl" id="spinRight">↷</button><button type="button" class="shoot" id="shootBtn">SHOOT</button></section>
+<script src="account.js"></script>
 <script src="game.js"></script>
-<script>
-let deferredInstall;const installBtn=document.getElementById('menuInstallBtn');
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;installBtn.hidden=false});
-installBtn.addEventListener('click',async()=>{if(!deferredInstall)return;deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;installBtn.hidden=true});
-window.addEventListener('appinstalled',()=>installBtn.hidden=true);
-if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
-</script>
+<script>let deferredInstall;const installBtn=document.getElementById('menuInstallBtn');window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;installBtn.hidden=false});installBtn.addEventListener('click',async()=>{if(!deferredInstall)return;deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;installBtn.hidden=true});window.addEventListener('appinstalled',()=>installBtn.hidden=true);if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));</script>
 </body></html>
