@@ -1,37 +1,5 @@
-const CACHE='penalty-shooter-v6';
-const ASSETS=['./','./index.html','./style.css','./game.js','./manifest.webmanifest','./icon.svg'];
-
-self.addEventListener('install',event=>{
-  event.waitUntil(
-    caches.open(CACHE)
-      .then(cache=>cache.addAll(ASSETS))
-      .then(()=>self.skipWaiting())
-  );
-});
-
-self.addEventListener('activate',event=>{
-  event.waitUntil(
-    caches.keys()
-      .then(keys=>Promise.all(keys.filter(key=>key.startsWith('penalty-shooter-')&&key!==CACHE).map(key=>caches.delete(key))))
-      .then(()=>self.clients.claim())
-  );
-});
-
-self.addEventListener('fetch',event=>{
-  if(event.request.method!=='GET') return;
-  const request=event.request;
-  const url=new URL(request.url);
-  if(url.origin!==self.location.origin) return;
-
-  event.respondWith(
-    fetch(request)
-      .then(response=>{
-        if(response && response.ok){
-          const copy=response.clone();
-          caches.open(CACHE).then(cache=>cache.put(request,copy)).catch(()=>{});
-        }
-        return response;
-      })
-      .catch(()=>caches.match(request).then(cached=>cached||caches.match('./index.html')))
-  );
-});
+const CACHE='penalty-shooter-v7';
+const ASSETS=['./','./index.html','./style.css','./account.css','./phone-fixes.css','./game-v3.js','./manifest.webmanifest','./icon.svg'];
+self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting()))});
+self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('penalty-shooter-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
+self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;const request=event.request,url=new URL(request.url);if(url.origin!==self.location.origin)return;event.respondWith(fetch(request).then(response=>{if(response&&response.ok){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(request,copy)).catch(()=>{})}return response}).catch(()=>caches.match(request).then(cached=>cached||caches.match('./index.html'))))});
