@@ -1,114 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#06111d">
-<meta name="description" content="Penalty Shooter — mobile penalty football game">
-<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg">
-<title>Penalty Shooter</title>
-<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="account.css"><link rel="stylesheet" href="phone-fixes.css"><link rel="stylesheet" href="graphics-enhancer.css">
-<style>
-html,body{touch-action:none;overflow:hidden}
-button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer}
-#gameCanvas{touch-action:none}
-.keeperCard,.keeperChoices,.keeperChoices button{pointer-events:auto!important}
-.keeperChoices{display:flex;gap:7px;margin-top:10px}
-.keeperChoices button{flex:1;min-height:36px}
-.keeperChoices button.active{outline:2px solid #31ed77;box-shadow:0 0 18px #31ed7744}
-</style>
-</head>
-<body>
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#07130d"><link rel="manifest" href="manifest.webmanifest"><title>Penalty Shooter</title>
+<link rel="stylesheet" href="style.css"></head><body>
 <canvas id="gameCanvas"></canvas>
-<div id="hud">
-  <div class="topbar">
-    <div class="profile"><div class="avatar">⚽</div><div><b>PLAYER</b><small>LEVEL <span id="level">1</span></small><div class="xp"><i id="xpFill"></i></div></div></div>
-    <div class="brand">PENALTY <span>SHOOTER</span></div>
-    <div class="topActions"><div class="coins">🪙 <b id="coins">250</b></div><button class="iconBtn" id="settingsBtn" type="button">⚙</button></div>
-  </div>
-  <div id="message" class="message">Choose keeper difficulty</div>
-  <div id="powerWrap"><div id="powerLabel">POWER</div><div class="powerBar"><i id="powerFill"></i></div></div>
-</div>
+<header id="hud"><div class="topbar"><b>⚽ PENALTY SHOOTER</b><span>🪙 <strong id="coins">250</strong></span><button id="settingsBtn">⚙</button></div>
+<div class="stats"><span>GOALS <b id="goals">0</b></span><span>SHOTS <b id="shots">0</b></span><span>SCORE <b id="score">0</b></span><span>BEST <b id="best">0</b></span></div>
+<div id="message" class="message">READY TO PLAY</div><div class="power"><small>SHOT POWER</small><i id="powerFill"></i></div></header>
 
-<section id="menu" class="menuScreen">
-  <div class="heroShade"></div>
-  <div class="menuContent">
-    <div class="titleBlock"><div class="eyebrow">AIM • SHOOT • SAVE</div><h1>PENALTY<br><span>SHOOTER</span></h1><p>BEAT THE KEEPER</p></div>
-    <div class="mainGrid">
-      <div class="mainNav">
-        <button class="bigMenu active" id="shootoutBtn" type="button"><span>▶</span><div><b>PLAY</b><small>5-shot penalty shootout</small></div></button>
-      </div>
-      <div class="sideCards">
-        <div class="keeperCard">
-          <span class="cardTag">KEEPER DIFFICULTY</span>
-          <b>Choose how hard the goalkeeper defends</b>
-          <div class="keeperChoices">
-            <button id="easyKeeper" type="button">EASY</button>
-            <button id="mediumKeeper" type="button">MEDIUM</button>
-            <button id="hardKeeper" type="button">HARD</button>
-          </div>
-          <small id="difficultyInfo">MEDIUM • balanced reactions • <strong>NO COINS</strong></small>
-        </div>
-      </div>
-    </div>
-    <div class="bottomNav">
-      <button id="bottomPlay" type="button">🎮</button>
-      <button id="bottomRank" type="button">♛</button>
-      <button id="bottomShare" type="button">↗</button>
-      <button id="menuInstallBtn" type="button" hidden>⬇ INSTALL</button>
-    </div>
-  </div>
-</section>
+<section id="menu" class="screen"><div class="panel hero"><small>FAST • SKILL • FOOTBALL</small><h1>PENALTY<br><em>SHOOTER</em></h1><p>Aim, curve and beat the keeper.</p>
+<button id="playBtn" class="primary">▶ PLAY</button><div class="diff"><b>KEEPER</b><button data-diff="easy">EASY</button><button data-diff="medium">MEDIUM</button><button data-diff="hard">HARD</button></div>
+<div class="menuActions"><button id="statsBtn">STATS</button><button id="shareBtn">SHARE</button></div></div></section>
 
-<section id="settingsPanel" class="modal hidden">
-  <div class="modalBox">
-    <button class="close" data-close="settingsPanel">×</button>
-    <h2>SETTINGS</h2>
-    <button class="settingBtn" id="soundBtn" type="button">🔊 Sound: ON</button>
-    <button class="settingBtn" id="resetBtn" type="button">RESET PROGRESS</button>
-  </div>
-</section>
+<section id="gameUI" class="hidden"><div class="controls"><button id="curveLeft">↶</button><button id="curveRight">↷</button><button id="shootBtn" class="shoot">SHOOT<small>HOLD</small></button></div></section>
 
-<section id="statsPanel" class="modal hidden">
-  <div class="modalBox">
-    <button class="close" data-close="statsPanel">×</button>
-    <h2>STATS</h2>
-    <div class="statGrid">
-      <div><b id="statGoals">0</b><small>GOALS</small></div>
-      <div><b id="statScore">0</b><small>SCORE</small></div>
-      <div><b id="statBest">0</b><small>BEST</small></div>
-      <div><b id="statStreak">0</b><small>STREAK</small></div>
-    </div>
-  </div>
-</section>
+<section id="result" class="screen hidden"><div class="panel"><h2 id="resultTitle">GOAL!</h2><p id="resultText"></p><button id="nextBtn" class="primary">NEXT SHOT</button><button id="restartBtn">RESTART</button><button id="menuBtn">MENU</button></div></section>
 
-<section id="result" class="panel hidden">
-  <h2 id="resultTitle">GOAL!</h2><p id="resultText"></p>
-  <button type="button" id="nextBtn">NEXT SHOT</button>
-  <button type="button" id="restartBtn">RESTART</button>
-  <button type="button" id="backMenuBtn">MENU</button>
-</section>
-
-<section id="controls" class="hidden">
-  <button type="button" class="ctrl" id="leftBtn">◀</button>
-  <button type="button" class="ctrl" id="upBtn">▲</button>
-  <button type="button" class="ctrl" id="downBtn">▼</button>
-  <button type="button" class="ctrl" id="rightBtn">▶</button>
-  <button type="button" class="ctrl" id="spinLeft">↶</button>
-  <button type="button" class="ctrl" id="spinRight">↷</button>
-  <button type="button" class="shoot" id="shootBtn">SHOOT</button>
-</section>
-
-<script src="account.js"></script>
-<script src="game-v4.js?v=5"></script>
-<script src="graphics-enhancer.js?v=2"></script>
+<section id="stats" class="screen hidden"><div class="panel"><button class="close" id="closeStats">×</button><h2>STATS</h2><p>Total goals: <b id="statsGoals">0</b></p><p>Best score: <b id="statsBest">0</b></p></div></section>
+<section id="settings" class="screen hidden"><div class="panel"><button class="close" id="closeSettings">×</button><h2>SETTINGS</h2><p>Penalty Shooter V6 — rebuilt from scratch.</p><button id="resetBtn">RESET PROGRESS</button></div></section>
+<script src="game-v4.js?v=6"></script>
 <script>
-let deferredInstall;
-const installBtn=document.getElementById('menuInstallBtn');
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;installBtn.hidden=false});
-installBtn.addEventListener('click',async()=>{if(!deferredInstall)return;deferredInstall.prompt();try{await deferredInstall.userChoice}catch(e){}deferredInstall=null;installBtn.hidden=true});
-window.addEventListener('appinstalled',()=>installBtn.hidden=true);
-if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-</script>
-</body>
-</html>
+document.querySelectorAll("[data-diff]").forEach(b=>b.addEventListener("click",()=>document.getElementById("statsGoals").textContent=localStorage.getItem("psGoals")||0));
+</script></body></html>
