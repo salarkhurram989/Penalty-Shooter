@@ -17,7 +17,7 @@
 
 <section id="stats" class="screen hidden"><div class="panel"><button class="close" id="closeStats">×</button><h2>STATS</h2><p>Total goals: <b id="statsGoals">0</b></p><p>Best score: <b id="statsBest">0</b></p></div></section>
 <section id="settings" class="screen hidden"><div class="panel"><button class="close" id="closeSettings">×</button><h2>SETTINGS</h2><p>Penalty Shooter V6 — rebuilt from scratch.</p><button id="resetBtn">RESET PROGRESS</button></div></section>
-<script src="game-v4.js?v=6"></script>
+<script src="game-v4.js?v=6"></script><script>if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));</script>
 <script>
 document.querySelectorAll("[data-diff]").forEach(b=>b.addEventListener("click",()=>document.getElementById("statsGoals").textContent=localStorage.getItem("psGoals")||0));
 </script></body></html>
