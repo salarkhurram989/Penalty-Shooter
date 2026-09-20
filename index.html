@@ -1,23 +1,18 @@
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#07130d"><link rel="manifest" href="manifest.webmanifest"><title>Penalty Shooter</title>
-<link rel="stylesheet" href="style.css"></head><body>
+<meta name="theme-color" content="#07111d"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css"><title>Penalty Shooter — Ultimate Edition</title></head><body>
 <canvas id="gameCanvas"></canvas>
-<header id="hud"><div class="topbar"><b>⚽ PENALTY SHOOTER</b><span>🪙 <strong id="coins">250</strong></span><button id="settingsBtn">⚙</button></div>
-<div class="stats"><span>GOALS <b id="goals">0</b></span><span>SHOTS <b id="shots">0</b></span><span>SCORE <b id="score">0</b></span><span>BEST <b id="best">0</b></span></div>
-<div id="message" class="message">READY TO PLAY</div><div class="power"><small>SHOT POWER</small><i id="powerFill"></i></div></header>
-
-<section id="menu" class="screen"><div class="panel hero"><small>FAST • SKILL • FOOTBALL</small><h1>PENALTY<br><em>SHOOTER</em></h1><p>Aim, curve and beat the keeper.</p>
-<button id="playBtn" class="primary">▶ PLAY</button><div class="diff"><b>KEEPER</b><button data-diff="easy">EASY</button><button data-diff="medium">MEDIUM</button><button data-diff="hard">HARD</button></div>
-<div class="menuActions"><button id="statsBtn">STATS</button><button id="shareBtn">SHARE</button></div></div></section>
-
-<section id="gameUI" class="hidden"><div class="controls"><button id="curveLeft">↶</button><button id="curveRight">↷</button><button id="shootBtn" class="shoot">SHOOT<small>HOLD</small></button></div></section>
-
-<section id="result" class="screen hidden"><div class="panel"><h2 id="resultTitle">GOAL!</h2><p id="resultText"></p><button id="nextBtn" class="primary">NEXT SHOT</button><button id="restartBtn">RESTART</button><button id="menuBtn">MENU</button></div></section>
-
-<section id="stats" class="screen hidden"><div class="panel"><button class="close" id="closeStats">×</button><h2>STATS</h2><p>Total goals: <b id="statsGoals">0</b></p><p>Best score: <b id="statsBest">0</b></p></div></section>
-<section id="settings" class="screen hidden"><div class="panel"><button class="close" id="closeSettings">×</button><h2>SETTINGS</h2><p>Penalty Shooter V6 — rebuilt from scratch.</p><button id="resetBtn">RESET PROGRESS</button></div></section>
-<script src="game-v4.js?v=6"></script><script>if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));</script>
-<script>
-document.querySelectorAll("[data-diff]").forEach(b=>b.addEventListener("click",()=>document.getElementById("statsGoals").textContent=localStorage.getItem("psGoals")||0));
-</script></body></html>
+<header id="hud"><div class="topbar"><button id="brandBtn" class="brand">⚽ PENALTY SHOOTER</button><div class="topStats"><span>🪙 <b id="coins">250</b></span><span>LV <b id="level">1</b></span><span>XP <b id="xp">0</b></span><button id="settingsBtn" class="iconBtn">⚙</button></div></div>
+<div id="matchHud" class="matchHud hidden"><span>GOALS <b id="goals">0</b></span><span>SHOTS <b id="shots">0</b></span><span>SCORE <b id="score">0</b></span><span>STREAK <b id="streak">0</b></span><span>COMBO <b id="combo">×1</b></span></div><div id="message" class="message">READY</div><div id="powerWrap" class="power hidden"><small>SHOT POWER</small><div><i id="powerFill"></i></div></div></header>
+<section id="menu" class="screen"><div class="menuPanel"><div class="eyebrow">SKILL • PRECISION • FOOTBALL</div><h1>PENALTY<br><em>SHOOTER</em></h1><p class="tagline">Master the spot. Beat the keeper. Build your legacy.</p><div class="homeGrid"><button class="big primary" data-action="quick">▶ QUICK MATCH</button><button class="big" data-action="career">★ CAREER</button><button class="big" data-action="shootout">⚡ SHOOTOUT</button><button class="big" data-action="practice">◎ PRACTICE</button></div><div class="homeRow"><button data-panel="challenges">CHALLENGES</button><button data-panel="shop">SHOP</button><button data-panel="customize">CUSTOMIZE</button></div><div class="homeRow"><button data-panel="missions">MISSIONS</button><button data-panel="achievements">ACHIEVEMENTS</button><button data-panel="stats">STATS</button></div><button id="installBtn" class="install hidden">⬇ INSTALL PENALTY SHOOTER</button></div></section>
+<section id="gameUI" class="gameUI hidden"><div class="controls"><button id="curveLeft">↶<small>CURVE</small></button><button id="curveRight">↷<small>CURVE</small></button><button id="shootBtn" class="shoot">SHOOT<small>HOLD</small></button></div><button id="pauseBtn" class="pause">Ⅱ</button></section>
+<section id="result" class="screen hidden"><div class="panel"><div id="resultBadge" class="resultBadge">GOAL</div><h2 id="resultTitle">GOAL!</h2><p id="resultText"></p><div id="rewardText" class="reward"></div><button id="nextBtn" class="primary">NEXT SHOT</button><button id="restartBtn">RESTART</button><button id="menuBtn">MENU</button></div></section>
+<section id="pauseScreen" class="screen hidden"><div class="panel"><h2>PAUSED</h2><button id="resumeBtn" class="primary">RESUME</button><button id="pauseRestart">RESTART</button><button data-panel="settings">SETTINGS</button><button id="pauseQuit">QUIT</button></div></section>
+<section id="stats" class="screen hidden"><div class="panel wide"><button class="close" data-close>×</button><h2>PLAYER STATS</h2><div class="statGrid" id="statsGrid"></div></div></section>
+<section id="shop" class="screen hidden"><div class="panel wide"><button class="close" data-close>×</button><h2>SHOP</h2><div class="shopTabs" id="shopTabs"></div><div id="shopGrid" class="cardGrid"></div></div></section>
+<section id="customize" class="screen hidden"><div class="panel wide"><button class="close" data-close>×</button><h2>CUSTOMIZE</h2><div class="previewBox" id="customPreview">PLAYER LOADOUT</div><div class="cardGrid" id="customGrid"></div></div></section>
+<section id="challenges" class="screen hidden"><div class="panel wide"><button class="close" data-close>×</button><h2>CHALLENGES</h2><div id="challengeGrid" class="cardGrid"></div></div></section>
+<section id="missions" class="screen hidden"><div class="panel wide"><button class="close" data-close>×</button><h2>DAILY MISSIONS</h2><div id="missionGrid" class="cardGrid"></div></div></section>
+<section id="achievements" class="screen hidden"><div class="panel wide"><button class="close" data-close>×</button><h2>ACHIEVEMENTS</h2><div id="achievementGrid" class="cardGrid"></div></div></section>
+<section id="settings" class="screen hidden"><div class="panel"><button class="close" data-close>×</button><h2>SETTINGS</h2><label class="toggle">Sound <input id="soundToggle" type="checkbox" checked></label><label class="toggle">Music <input id="musicToggle" type="checkbox"></label><label class="toggle">Vibration <input id="vibeToggle" type="checkbox" checked></label><label class="toggle">Camera effects <input id="cameraToggle" type="checkbox" checked></label><label class="toggle">Reduced motion <input id="motionToggle" type="checkbox"></label><label class="selectRow">Graphics <select id="graphicsSelect"><option>LOW</option><option selected>MEDIUM</option><option>HIGH</option></select></label><button id="resetBtn" class="danger">RESET ALL PROGRESS</button></div></section>
+<script src="game.js?v=1"></script><script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));</script></body></html>
