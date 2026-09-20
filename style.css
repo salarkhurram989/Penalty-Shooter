@@ -15,3 +15,47 @@
 /* ===== MOBILE ===== */
 @media(max-width:600px){.topbar{height:62px;padding:7px 8px}.brand{font-size:9px;padding:8px 9px;border-radius:11px}.topStats{gap:3px}.topStats span,.iconBtn{padding:6px 7px;font-size:8px;border-radius:9px}.iconBtn{font-size:12px}.matchHud{gap:3px;margin-top:0}.matchHud span{padding:5px 6px;font-size:6px;border-radius:8px}.matchHud b{font-size:10px}.message{top:92px;font-size:8px;padding:7px 11px}.menuPanel,.panel{padding:20px;border-radius:22px}.menuPanel h1{font-size:48px;letter-spacing:-2px}.tagline{font-size:11px}.homeGrid{grid-template-columns:1fr;gap:8px}.homeGrid .big{min-height:53px}.homeRow{gap:6px}.homeRow button{font-size:7px;padding:10px 3px}.statGrid{grid-template-columns:repeat(2,1fr)}.cardGrid{grid-template-columns:repeat(2,1fr);gap:7px}.card{padding:11px}.card h3{font-size:12px}.card p{font-size:9px}.power{width:76vw}.controls{bottom:8px}.controls #curveLeft{right:146px}.controls #curveRight{right:82px}.controls .shoot{right:5px;width:80px;height:80px}.pause{top:70px;right:8px}.panel h2{font-size:21px}.screen{padding:10px}}
 @media(max-width:360px){.topStats span:nth-child(3){display:none}.homeRow button{font-size:6px}.controls #curveLeft{right:133px}.controls #curveRight{right:71px}.controls .shoot{width:72px;height:72px}}
+@media(max-width:600px){
+  html,body{width:100%;min-width:0;overflow:hidden;overscroll-behavior:none;-webkit-user-select:none;user-select:none}
+  #gameCanvas{width:100vw!important;height:100dvh!important;touch-action:none}
+  .topbar{height:58px;padding:calc(env(safe-area-inset-top) + 5px) 7px 5px;align-items:flex-start}
+  .brand{font-size:8px;padding:7px 8px;border-radius:10px;white-space:nowrap;max-width:43vw;overflow:hidden;text-overflow:ellipsis}
+  .topStats{gap:3px;max-width:55vw;justify-content:flex-end}
+  .topStats span,.iconBtn{padding:6px 6px;font-size:7px;border-radius:8px;min-height:32px;display:flex;align-items:center;justify-content:center}
+  .iconBtn{font-size:12px;min-width:32px}
+  .matchHud{gap:3px;margin-top:1px;padding:0 6px;flex-wrap:nowrap}
+  .matchHud span{padding:5px 6px;font-size:6px;border-radius:8px;flex:1;min-width:0;text-align:center}
+  .matchHud b{font-size:9px}
+  .message{top:calc(env(safe-area-inset-top) + 91px);font-size:8px;padding:6px 10px;max-width:84vw;overflow:hidden;text-overflow:ellipsis}
+  .power{bottom:calc(env(safe-area-inset-bottom) + 112px);width:68vw;z-index:7}
+  .power small{font-size:7px}.power>div{height:9px;margin-top:4px}
+  .gameUI{inset:0;z-index:22}
+  .controls{bottom:calc(env(safe-area-inset-bottom) + 7px);height:92px}
+  .controls button{width:54px;height:54px;font-size:19px}
+  .controls small{font-size:5px}
+  .controls #curveLeft{right:132px;bottom:18px}
+  .controls #curveRight{right:73px;bottom:39px}
+  .controls .shoot{right:7px;bottom:0;width:76px;height:76px;font-size:12px}
+  .pause{top:calc(env(safe-area-inset-top) + 61px);right:7px;width:38px;height:38px;border-radius:11px;font-size:14px}
+  .screen{padding:8px;align-items:center;overflow:auto}
+  .menuPanel,.panel{width:min(94vw,520px);max-height:92dvh;padding:17px;border-radius:19px}
+  .menuPanel h1{font-size:43px;line-height:.82;margin:11px 0 9px}
+  .eyebrow{font-size:7px;letter-spacing:2.5px}.tagline{font-size:10px;margin-bottom:14px}
+  .homeGrid{grid-template-columns:1fr 1fr;gap:6px}.homeGrid .big{min-height:48px;font-size:8px;padding:8px 5px}
+  .homeGrid .big:first-child{grid-column:1/-1}
+  .homeRow{grid-template-columns:repeat(3,1fr);gap:5px;margin-top:6px}.homeRow button{font-size:6px;padding:9px 2px;min-height:38px}
+  .install{font-size:8px;padding:11px;margin-top:8px}
+  .panel h2{font-size:19px;margin-bottom:13px}.statGrid{grid-template-columns:repeat(2,1fr);gap:6px}.statGrid div{min-height:62px;padding:10px;font-size:9px}.statGrid b{font-size:17px}
+  .cardGrid{grid-template-columns:1fr 1fr;gap:6px}.card{padding:9px;border-radius:11px}.card h3{font-size:10px}.card p{font-size:8px}.card button{padding:9px 5px;font-size:8px;min-height:38px}
+  .previewBox{padding:18px;font-size:16px}.toggle,.selectRow{padding:11px 2px;font-size:11px}
+}
+@media(max-width:360px){
+  .topStats span:nth-child(3){display:none}.brand{max-width:40vw}.topStats{max-width:58vw}
+  .controls #curveLeft{right:119px}.controls #curveRight{right:62px}.controls .shoot{width:70px;height:70px}
+  .power{bottom:calc(env(safe-area-inset-bottom) + 104px);width:72vw}
+  .menuPanel h1{font-size:38px}.homeGrid .big{min-height:44px}
+}
+@media(orientation:landscape) and (max-height:520px){
+  .topbar{height:46px;padding-top:4px}.matchHud{margin-top:-2px}.message{top:61px}.pause{top:49px}
+  .power{bottom:calc(env(safe-area-inset-bottom) + 70px);width:42vw}.controls{bottom:calc(env(safe-area-inset-bottom) + 3px);height:66px}.controls #curveLeft{right:122px;bottom:7px}.controls #curveRight{right:67px;bottom:18px}.controls .shoot{width:60px;height:60px}
+}
