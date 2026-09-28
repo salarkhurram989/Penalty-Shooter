@@ -59,3 +59,14 @@
   .topbar{height:46px;padding-top:4px}.matchHud{margin-top:-2px}.message{top:61px}.pause{top:49px}
   .power{bottom:calc(env(safe-area-inset-bottom) + 70px);width:42vw}.controls{bottom:calc(env(safe-area-inset-bottom) + 3px);height:66px}.controls #curveLeft{right:122px;bottom:7px}.controls #curveRight{right:67px;bottom:18px}.controls .shoot{width:60px;height:60px}
 }
+
+/* ===== VISUAL POLISH ===== */
+body:before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 50% 45%,transparent 30%,#00000035 100%);mix-blend-mode:multiply}
+#gameCanvas{filter:saturate(1.08) contrast(1.04)}
+.panel,.menuPanel{border-color:#ffffff28;background:linear-gradient(145deg,rgba(12,32,48,.96),rgba(2,10,17,.98));box-shadow:0 24px 90px #000e,0 0 0 1px #ffffff08 inset}
+.menuPanel:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 25%,#ffffff05 50%,transparent 75%);transform:translateX(-120%);animation:panelSheen 7s ease-in-out infinite}
+@keyframes panelSheen{0%,65%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
+.homeGrid .big,.homeRow button,.panel>button:not(.primary):not(.close){box-shadow:0 7px 20px #0004,0 1px 0 #ffffff0a inset}
+.homeGrid .big:hover,.homeRow button:hover,.card button:hover{box-shadow:0 10px 26px #0006,0 0 18px #28e87918}
+.resultBadge{box-shadow:0 0 24px #16d96b28}
+.message{box-shadow:0 8px 30px #000a,0 0 22px #1fe77a10}
