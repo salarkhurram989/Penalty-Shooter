@@ -75,3 +75,8 @@ The goal of Penalty Shooter is to combine arcade accessibility with believable f
 ## 👤 Author
 
 Created by **Salar**.
+
+
+## 3D Stadium Mode
+
+Select **3D STADIUM** from the main menu to play the additional Three.js penalty-shooting scene. It includes a 3D pitch, goal and net, stadium seating, player and goalkeeper models, drag-to-aim controls, shooting, and goal/shot tracking. The original game and its existing progression systems remain available from the main menu.
